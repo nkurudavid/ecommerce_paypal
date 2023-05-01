@@ -11,8 +11,30 @@
     <div>
         <h3>{% block title %}Checkout{% endblock %}</h3>
         {% block content %}
-            <h4>Pay with PayPal</h4>
-            {{ form.render }}
+            {% if product %}
+            <div class='row'>
+                <div class="col-lg-12"><div class="card mb-3">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{product.image.url}}" class="card-img-top" height="" alt="{{product.name}}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.description}}</p>
+                        <p class="card-text">Price: ${{product.price}}</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="nav justify-content-end bg-light py-4">
+                <h5>Pay with PayPal</h5>
+                {{ form.render }}
+            </div>
+            {% endif %}
         {% endblock %}
     </div>
 </body>

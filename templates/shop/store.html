@@ -16,12 +16,11 @@
                 {% for product in products %}
                 <div class="col-lg-4">
                     <div class="card">
-                        <img src="{{product.image.url}}" class="card-img-top" height="280px" alt="{{product.name}}">
+                        <img src="{{product.image.url}}" class="card-img-top" height="" alt="{{product.name}}">
                         <div class="card-body">
                           <h5 class="card-title">{{product.name}}</h5>
-                          <p class="card-text">{{product.description}}</p>
-                          <p class="card-text">Price: {{product.price}}</p>
-                          <a href="#" class="btn btn-outline-primary">Add to Cart</a>
+                          <p class="card-text">Price: ${{product.price}}</p>
+                          <a href="{% url 'process_payment' product.id %}" class="btn btn-outline-primary">Buy now</a>
                         </div>
                     </div>
                 </div>

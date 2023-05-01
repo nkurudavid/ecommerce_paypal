@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import ProductCategory, Product, Order, OrderItem
+from .models import ProductCategory, Product, Order
 
 # Register your models here.
 
@@ -40,28 +40,12 @@ class ProductAdmin(admin.ModelAdmin):
     image_display.short_description = 'Image'
 
 
-
-class OrderItemInline(admin.TabularInline):
-    model = OrderItem
-    extra = 0
-    readonly_fields = ('product', 'quantity', 'totalAmount',)
-
-
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('orderCode', 'user', 'amount', 'is_paid', 'dateCreated',)
+    list_display = ('orderCode', 'amount', 'is_paid', 'dateCreated',)
     list_filter = ('is_paid', 'dateCreated',)
-    search_fields = ('orderCode', 'user__email',)
-    inlines = (OrderItemInline,)
-    readonly_fields = ('user', 'orderCode', 'amount', 'is_paid', 'dateCreated',)
+    search_fields = ('orderCode',)
+    readonly_fields = ('orderCode', 'amount', 'is_paid', 'dateCreated',)
 
-    def has_add_permission(self, request):
-        return False
-
-@admin.register(OrderItem)
-class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('order', 'product', 'quantity', 'totalAmount',)
-    search_fields = ('order__orderCode', 'product__name',)
-    
     def has_add_permission(self, request):
         return False
