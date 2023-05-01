@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fbc780ef018ca98b248168dfab29c4176d7fc59c1badbd34cd6c2b540efb04e7"
+            "sha256": "ed5f9804f0bf4b68b213d81e12c3e100a348519cdfc35470ceb3707619109866"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -120,6 +120,14 @@
             ],
             "index": "pypi",
             "version": "==4.2"
+        },
+        "django-cors-headers": {
+            "hashes": [
+                "sha256:5fbd58a6fb4119d975754b2bc090f35ec160a8373f276612c675b00e8a138739",
+                "sha256:684180013cc7277bdd8702b80a3c5a4b3fcae4abb2bf134dceb9f5dfe300228e"
+            ],
+            "index": "pypi",
+            "version": "==3.14.0"
         },
         "django-paypal": {
             "hashes": [

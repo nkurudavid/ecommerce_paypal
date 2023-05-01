@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.urls import reverse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from decimal import Decimal
@@ -21,7 +21,7 @@ def process_payment(request):
 
     paypal_dict = {
         'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'amount': '22.00',
+        'amount': '73.00',
         'item_name': 'Product 1',
         'invoice': 'Order {}'.format(random.randint(0,1000000000)),
         'currency_code': 'USD',
@@ -40,9 +40,11 @@ def process_payment(request):
     
 @csrf_exempt
 def payment_done(request):
-    return render(request, 'shop/payment_done.html')
+    messages.success(request, 'You\'ve successfully completed your transaction')
+    return redirect(process_payment)
 
 
 @csrf_exempt
 def payment_canceled(request):
-    return render(request, 'shop/payment_cancelled.html')
+    messages.error(request, 'Your transaction has been canceled.')
+    return render(process_payment)

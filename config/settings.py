@@ -14,8 +14,16 @@ SECRET_KEY = 'django-insecure-k!5ms&kqe)%n9v-)j=*new5o_^gx5k0kobw2)go6v1@*y4$2bb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+CORS_ORIGIN_WHITELIST = [
+    'https://ba96-102-22-173-74.ngrok-free.app',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'https://ba96-102-22-173-74.ngrok-free.app',
+]
 
 # Application definition
 
@@ -29,6 +37,7 @@ INSTALLED_APPS = [
 
     #...third party
     'paypal.standard.ipn',
+    'corsheaders',
 
     #...local app
     'shop.apps.ShopConfig',
@@ -38,6 +47,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # cors headers middleware
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -124,5 +134,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-PAYPAL_RECEIVER_EMAIL = 'nkurudavid44@mail.com'
+PAYPAL_RECEIVER_EMAIL = 'sb-ygjma25843660@business.example.com'
 PAYPAL_TEST = True
