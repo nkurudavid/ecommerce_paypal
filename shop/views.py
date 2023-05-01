@@ -33,7 +33,7 @@ def process_payment(request):
     form = PayPalPaymentsForm(initial=paypal_dict)
     context =  {
         # 'order': order, 
-        'form': form
+        'form': form,
     }
     return render(request, 'shop/process_payment.html', context)
 
